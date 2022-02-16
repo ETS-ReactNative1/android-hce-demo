@@ -107,10 +107,6 @@ function HomeScreen(props) {
   }, [navigation]);
 
   function renderNfcButtons() {
-      return (<App/>)
-    /*  return (
-          <Appv2/>
-      )*/
     return (
       <View
         style={{
@@ -119,6 +115,7 @@ function HomeScreen(props) {
           alignSelf: 'center',
           width,
         }}>
+
         <Button
           mode="contained"
           onPress={async () => {
@@ -132,7 +129,7 @@ function HomeScreen(props) {
           READ TAGs
         </Button>
 
-        <Button
+   {/*     <Button
           mode="contained"
           onPress={async () => {
             navigation.navigate('NdefTypeList');
@@ -165,7 +162,7 @@ function HomeScreen(props) {
             navigation.navigate('SavedRecord');
           }}>
           MY RECORDS
-        </Button>
+        </Button>*/}
       </View>
     );
   }
@@ -215,9 +212,10 @@ function HomeScreen(props) {
           }}>
           <Image
             source={require('../../../images/nfc-rewriter-icon.png')}
-            style={{width: 250, height: 250}}
+            style={{width: 200, height: 200}}
             resizeMode="contain"
           />
+            <App/>
         </View>
 
         {supported && !enabled && renderNfcNotEnabled()}

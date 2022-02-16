@@ -58,6 +58,80 @@
 The NFC library is powered by <a href="https://github.com/facebook/react-native">react-native</a> as well as <a href="https://github.com/whitedogg13/react-native-nfc-manager">react-native-nfc-manager</a>
 </p>
 
+## Post-installation steps
+
+After the installation, following changes must be made inside the  ``<projectRoot>/android``:
+
+### aid_list.xml
+
+Create new file `aid_list.xml` in `<projectRoot>/android/app/src/main/res/xml` directory. Create the directory, if it does not exist yet.
+
+- Put the following content to the file:
+
+```xml
+<host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
+                   android:description="@string/app_name"
+                   android:requireDeviceUnlock="false">
+  <aid-group android:category="other"
+             android:description="@string/app_name">
+    <!-- Create a separate <aid-filer /> node for each NFC application ID, that You intent to emulate/host. -->
+    <!-- For the NFC Type 4 tag emulation, let's put "D2760000850101" -->
+    <aid-filter android:name="D2760000850101" />
+  </aid-group>
+</host-apdu-service>
+```
+
+### AndroidManifest.xml
+
+Open the app's manifest (``<projectRoot>/android/app/src/main/AndroidManifest.xml``):
+
+- Add permission to use NFC in the application, and add the declaration of usage the HCE feature:
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.example.reactnativehce">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- add this: -->
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc.hce" android:required="true" />
+```
+
+- HCE emulation on the Android platform works as a service. ``react-native-hce`` module communicating with this service, so that's why we need to place the reference in AndroidManifest.
+
+```xml
+<application
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme">
+
+    <!-- ... -->
+
+    <!-- Add the following block: -->
+    <service
+        android:name="com.reactnativehce.services.CardService"
+        android:exported="true"
+        android:enabled="false"
+        android:permission="android.permission.BIND_NFC_SERVICE" >
+        <intent-filter>
+          <action android:name="android.nfc.cardemulation.action.HOST_APDU_SERVICE" />
+          <category android:name="android.intent.category.DEFAULT"/>
+        </intent-filter>
+
+        <meta-data
+          android:name="android.nfc.cardemulation.host_apdu_service"
+          android:resource="@xml/aid_list" />
+    </service>
+    <!-- ... -->
+</application>
+```
+
+That's it.
+
 ## Features
 
 - Read NFC tags
