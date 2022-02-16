@@ -3,7 +3,7 @@ import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import HCESession, { NFCContentType, NFCTagType4 } from 'react-native-hce';
 import AndroidBeam, {RtdType} from './AndroidBeam'
 const androidBeamInstance = new AndroidBeam()
-export default function App() {
+export default function Hce() {
     const [content, setContent] = useState('');
     const [contentType, setContentType] = useState(
         NFCContentType.Text

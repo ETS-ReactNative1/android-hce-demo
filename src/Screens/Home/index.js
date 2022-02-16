@@ -16,8 +16,7 @@ import NfcManager, {NfcEvents, NfcTech} from 'react-native-nfc-manager';
 import {Button, IconButton} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import qs from 'query-string';
-import Appv2 from "./Appv2";
-import App from "./App";
+import Hce from "./Hce";
 
 function HomeScreen(props) {
   const {navigation} = props;
@@ -215,7 +214,7 @@ function HomeScreen(props) {
             style={{width: 200, height: 200}}
             resizeMode="contain"
           />
-            <App/>
+            <Hce/>
         </View>
 
         {supported && !enabled && renderNfcNotEnabled()}
