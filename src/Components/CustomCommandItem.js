@@ -4,7 +4,9 @@ import {IconButton} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function CommandItem(props) {
+    console.log('props',props)
   const {cmd, resp, onDelete, onEdit, readOnly} = props;
+    console.log('resp',resp)
   const wrapperStyle = {
     marginBottom: 10,
     padding: 5,
@@ -22,6 +24,7 @@ function CommandItem(props) {
           {cmd.payload.reduce((acc, byte) => {
             return (
               acc + ('00' + byte.toString(16).toUpperCase()).slice(-2) + ' '
+                // acc + (byte.toString().length === 1 ? `0${byte}`: byte )+ ' '
             );
           }, '')}
         </Text>
@@ -32,6 +35,7 @@ function CommandItem(props) {
               {resp.reduce((acc, byte) => {
                 return (
                   acc + ('00' + byte.toString(16).toUpperCase()).slice(-2) + ' '
+                    // acc + (byte.toString().length === 1 ? `0${byte}`:byte) + ' '
                 );
               }, '')}
             </Text>

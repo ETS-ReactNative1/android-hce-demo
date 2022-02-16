@@ -16,6 +16,8 @@ import NfcManager, {NfcEvents, NfcTech} from 'react-native-nfc-manager';
 import {Button, IconButton} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import qs from 'query-string';
+import Appv2 from "./Appv2";
+import App from "./App";
 
 function HomeScreen(props) {
   const {navigation} = props;
@@ -105,6 +107,10 @@ function HomeScreen(props) {
   }, [navigation]);
 
   function renderNfcButtons() {
+      return (<App/>)
+    /*  return (
+          <Appv2/>
+      )*/
     return (
       <View
         style={{
@@ -117,6 +123,7 @@ function HomeScreen(props) {
           mode="contained"
           onPress={async () => {
             const tag = await NfcProxy.readTag();
+            console.log('tag',tag)
             if (tag) {
               navigation.navigate('TagDetail', {tag});
             }

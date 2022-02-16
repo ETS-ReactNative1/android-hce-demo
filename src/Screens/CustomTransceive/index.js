@@ -14,14 +14,39 @@ import NfcProxy, {setBeforeTransceive} from '../../NfcProxy';
 import ScreenHeader from '../../Components/ScreenHeader';
 import {NfcTech} from 'react-native-nfc-manager';
 
+function hex2Dec(hexString) {
+    let decArray = [];
+    let remainingHex = hexString
+    while (remainingHex.substr(2).length>=2){
+        let firstHex =remainingHex.substr(0,2);
+        remainingHex = remainingHex.substr(2)
+        decArray.push(firstHex,16)
+    }
+
+
+    return decArray
+}
+
 function CustomTransceiveScreen(props) {
   const {params} = props.route;
   const nfcTech = params.savedRecord?.payload.tech || params.nfcTech;
   const [showCommandModal, setShowCommandModal] = React.useState(false);
   const [currEditIdx, setCurrEditIdx] = React.useState(null);
   const [commands, setCommands] = React.useState(
-    params.savedRecord?.payload.value || [],
+    params.savedRecord?.payload.value ||  [
+        // {"payload": ['00','A4','04','00','07','D2','76','00','00','85','01','01','00'], "type": "command"}, //select
+        {"payload": [0,164,4,0,14,68 ,50, 55, 54, 48, 48, 48, 48, 56 , 53 ,48 ,49, 48, 49,0], "type": "command"}, //select
+        // {"payload": hex2Dec('00A4000C02E103'), "type": "command"}, //select
+        // {"payload": hex2Dec('00B000000F'), "type": "command"}, //select
+        // {"payload": hex2Dec('00A4000C02E104'), "type": "command"}, //select
+        {"payload": hex2Dec('00B0000002'), "type": "command"}, //select
+        {"payload": hex2Dec('00B0'), "type": "command"}, //select
+
+      ]
+      // [0,164,4,0,14,68 ,50, 55, 54, 48, 48, 48, 48, 56 , 53 ,48 ,49, 48, 49,0],
+    // params.savedRecord?.payload.value || ['00','A4','04','00','0E','44' ,'32', '37', '36', '30', '30', '30', '30', '38', '35' ,'30' ,'31', '30', '31','00'],
   );
+  console.log('commands',commands)
   const {readOnly, title} = params;
   const [responses, setResponses] = React.useState([]);
   const [currEditParamIdx, setCurrEditParamIdx] = React.useState(null);

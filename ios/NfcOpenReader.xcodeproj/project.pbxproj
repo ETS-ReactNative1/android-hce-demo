@@ -487,7 +487,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = NfcOpenReader/NfcOpenReader.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HE7MCCDHL4;
+				DEVELOPMENT_TEAM = 7XJSLG6XUF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = NfcOpenReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -500,7 +500,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.revteltech.nfcopenrewriter;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pogofdev.nfcopenrewriter;
 				PRODUCT_NAME = NfcOpenReader;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -516,7 +516,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = NfcOpenReader/NfcOpenReader.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HE7MCCDHL4;
+				DEVELOPMENT_TEAM = 7XJSLG6XUF;
 				INFOPLIST_FILE = NfcOpenReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -528,7 +528,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.revteltech.nfcopenrewriter;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pogofdev.nfcopenrewriter;
 				PRODUCT_NAME = NfcOpenReader;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

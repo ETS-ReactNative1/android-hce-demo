@@ -123,7 +123,12 @@ class NfcProxy {
     let tag = null;
 
     try {
-      await NfcManager.requestTechnology([NfcTech.Ndef]);
+      await NfcManager.requestTechnology([
+        NfcTech.Ndef,
+        // NfcTech.MifareIOS,
+        // NfcTech.Iso15693IOS,
+        // NfcTech.IsoDep,
+      ]);
 
       tag = await NfcManager.getTag();
       tag.ndefStatus = await NfcManager.ndefHandler.getNdefStatus();
