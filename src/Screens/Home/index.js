@@ -211,7 +211,7 @@ function HomeScreen(props) {
           }}>
           <Image
             source={require('../../../images/nfc-rewriter-icon.png')}
-            style={{width: 200, height: 200}}
+            style={{width: 100, height: 100}}
             resizeMode="contain"
           />
             <Hce/>

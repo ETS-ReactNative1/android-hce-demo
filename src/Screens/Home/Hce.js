@@ -5,6 +5,7 @@ import AndroidBeam, {RtdType} from './AndroidBeam'
 const androidBeamInstance = new AndroidBeam()
 export default function Hce() {
     const [content, setContent] = useState('');
+    const [features, setFeatures] = useState({});
     const [contentType, setContentType] = useState(
         NFCContentType.Text
     );
@@ -31,6 +32,8 @@ export default function Hce() {
     const startSimulation = useCallback(async () => {
         const tag = new NFCTagType4(contentType, content);
         simulationInstance.current = await new HCESession(tag).start();
+        let f =  await simulationInstance.current.checkSupport()
+        setFeatures(f)
         androidBeamInstance.requestAndroidBeam({rtdType:RtdType.TEXT,data:content})
         setSimulationEnabled(simulationInstance.current.active);
 
@@ -57,6 +60,8 @@ export default function Hce() {
     return (
         <View style={styles.container}>
             <Text>Welcome to the HCE NFC Tag example.</Text>
+            <Text>NFC SUPPORTED FEATURES:</Text>
+            <Text>{JSON.stringify(features)}</Text>
             <View style={{ flexDirection: 'row' }}>
                 <Button
                     title="Text content"
